@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Help & Support | Call Us</title>
+<style>
+  :root{
+    --navy:#131921;
+    --navy-2:#232f3e;
+    --orange:#ff9900;
+    --orange-dark:#e88b00;
+    --teal:#007185;
+    --bg:#eaeded;
+    --card:#ffffff;
+    --text:#0f1111;
+    --muted:#565959;
+    --radius:10px;
+    --shadow:0 2px 10px rgba(0,0,0,.10);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Amazon Ember",Arial,Helvetica,sans-serif;
+    background:var(--bg);color:var(--text);
+    line-height:1.55;-webkit-font-smoothing:antialiased;
+    padding-bottom:70px;
+  }
+  a{text-decoration:none;color:inherit}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+
+  /* ---------- Disclaimer ---------- */
+  .disclaimer{
+    background:#fff8e5;border-bottom:1px solid #f0d9a0;
+    color:#5c4400;font-size:12.5px;text-align:center;padding:8px 16px;
+  }
+
+  /* ---------- Header ---------- */
+  header.site-header{
+    background:var(--navy);color:#fff;position:sticky;top:0;z-index:900;
+    box-shadow:0 2px 6px rgba(0,0,0,.35);
+  }
+  .header-inner{
+    display:flex;align-items:center;gap:18px;
+    padding:10px 16px;max-width:1180px;margin:0 auto;
+  }
+  .brand{display:flex;align-items:center;gap:9px;flex-shrink:0}
+  .brand-mark{
+    width:34px;height:34px;border-radius:8px;background:var(--orange);
+    display:grid;place-items:center;color:var(--navy);font-weight:800;font-size:17px;
+  }
+  .brand-name{font-size:19px;font-weight:700;letter-spacing:.2px;white-space:nowrap}
+  .brand-name span{color:var(--orange)}
+  .header-search{flex:1;display:flex;min-width:0}
+  .header-search input{
+    flex:1;min-width:0;border:0;padding:9px 12px;font-size:14px;
+    border-radius:6px 0 0 6px;outline:none;
+  }
+  .header-search button{
+    border:0;background:var(--orange);padding:0 16px;cursor:pointer;
+    border-radius:0 6px 6px 0;font-size:16px;
+  }
+  .header-call{
+    display:flex;align-items:center;gap:8px;background:var(--orange);
+    color:var(--navy);font-weight:700;padding:9px 16px;border-radius:8px;
+    white-space:nowrap;font-size:14.5px;transition:background .15s;
+  }
+  .header-call:hover{background:var(--orange-dark)}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    background:linear-gradient(160deg,#232f3e 0%,#131921 100%);
+    color:#fff;padding:52px 0 60px;text-align:center;
+  }
+  .hero h1{font-size:clamp(26px,4.2vw,40px);line-height:1.25;margin-bottom:14px}
+  .hero p{color:#d5d9d9;max-width:620px;margin:0 auto 26px;font-size:16.5px}
+  .hero-call{
+    display:inline-flex;align-items:center;gap:12px;
+    background:var(--orange);color:var(--navy);font-weight:800;
+    font-size:clamp(19px,3vw,25px);padding:15px 34px;border-radius:50px;
+    box-shadow:0 6px 22px rgba(255,153,0,.38);transition:transform .15s,background .15s;
+  }
+  .hero-call:hover{background:#ffb13d;transform:translateY(-2px)}
+  .hero-note{margin-top:14px;font-size:13px;color:#9ba3a8}
+
+  /* ---------- Sections ---------- */
+  section{padding:46px 0}
+  .section-title{font-size:23px;margin-bottom:6px}
+  .section-sub{color:var(--muted);font-size:14.5px;margin-bottom:24px}
+
+  .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(255px,1fr))}
+  .card{
+    background:var(--card);border-radius:var(--radius);padding:22px;
+    box-shadow:var(--shadow);border:1px solid #e3e6e6;
+    display:flex;flex-direction:column;gap:9px;
+    transition:box-shadow .15s,transform .15s;
+  }
+  .card:hover{box-shadow:0 6px 20px rgba(0,0,0,.13);transform:translateY(-2px)}
+  .card .ico{font-size:24px;line-height:1}
+  .card h3{font-size:16.5px}
+  .card p{font-size:14px;color:var(--muted);flex:1}
+  .card .call-link{
+    display:inline-flex;align-items:center;gap:7px;margin-top:6px;
+    color:var(--teal);font-weight:700;font-size:14px;
+  }
+  .card .call-link:hover{color:#c45500;text-decoration:underline}
+
+  /* steps */
+  .steps{counter-reset:s;display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+  .step{
+    background:#fff;border-radius:var(--radius);padding:22px;
+    border:1px solid #e3e6e6;box-shadow:var(--shadow);position:relative;
+  }
+  .step::before{
+    counter-increment:s;content:counter(s);
+    width:30px;height:30px;border-radius:50%;background:var(--orange);
+    color:var(--navy);font-weight:800;display:grid;place-items:center;
+    font-size:15px;margin-bottom:12px;
+  }
+  .step h3{font-size:16px;margin-bottom:6px}
+  .step p{font-size:14px;color:var(--muted)}
+
+  /* big call band */
+  .call-band{
+    background:linear-gradient(135deg,#ff9900,#ffb84d);
+    border-radius:14px;padding:38px 26px;text-align:center;
+    box-shadow:0 8px 26px rgba(255,153,0,.3);
+  }
+  .call-band h2{font-size:clamp(20px,3vw,28px);color:#131921;margin-bottom:8px}
+  .call-band p{color:#4a3600;margin-bottom:22px;font-size:15px}
+  .call-band a{
+    display:inline-flex;align-items:center;gap:11px;background:#131921;color:#fff;
+    font-weight:800;font-size:clamp(18px,2.6vw,24px);padding:14px 32px;
+    border-radius:50px;transition:transform .15s,background .15s;
+  }
+  .call-band a:hover{background:#000;transform:translateY(-2px)}
+
+  /* FAQ */
+  details{
+    background:#fff;border:1px solid #e3e6e6;border-radius:var(--radius);
+    padding:15px 18px;margin-bottom:11px;box-shadow:var(--shadow);
+  }
+  details summary{
+    cursor:pointer;font-weight:700;font-size:15px;list-style:none;
+    display:flex;justify-content:space-between;gap:14px;
+  }
+  details summary::-webkit-details-marker{display:none}
+  details summary::after{content:"+";color:var(--teal);font-size:20px;line-height:1}
+  details[open] summary::after{content:"–"}
+  details p{font-size:14.3px;color:var(--muted);margin-top:10px}
+
+  /* ---------- Footer ---------- */
+  footer.site-footer{background:var(--navy-2);color:#ddd;margin-top:20px}
+  .footer-top{
+    background:#37475a;padding:16px;text-align:center;cursor:pointer;font-size:13.5px;
+  }
+  .footer-top:hover{background:#435cos;}
+  .footer-main{
+    max-width:1180px;margin:0 auto;padding:40px 16px 26px;
+    display:grid;gap:30px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  }
+  .footer-main h4{color:#fff;font-size:15px;margin-bottom:12px}
+  .footer-main ul{list-style:none}
+  .footer-main li{margin-bottom:9px}
+  .footer-main a{color:#ddd;font-size:13.5px}
+  .footer-main a:hover{text-decoration:underline}
+  .footer-call{
+    background:var(--orange);color:var(--navy)!important;font-weight:800;
+    display:inline-flex;align-items:center;gap:9px;padding:13px 22px;
+    border-radius:9px;font-size:16px;margin-top:4px;
+  }
+  .footer-call:hover{background:var(--orange-dark);text-decoration:none!important}
+  .footer-bottom{
+    border-top:1px solid #3a4553;padding:18px 16px;text-align:center;
+    font-size:12.5px;color:#999;
+  }
+  .footer-bottom .disc{max-width:760px;margin:10px auto 0;line-height:1.6}
+
+  /* ---------- Floating toggle ---------- */
+  .fab{
+    position:fixed;right:18px;bottom:88px;z-index:1000;
+    width:60px;height:60px;border-radius:50%;border:0;cursor:pointer;
+    background:var(--orange);color:var(--navy);font-size:26px;
+    display:grid;place-items:center;
+    box-shadow:0 6px 20px rgba(0,0,0,.32);
+    transition:transform .2s,background .2s;
+  }
+  .fab:hover{transform:scale(1.07);background:var(--orange-dark)}
+  .fab .close-ico{display:none;font-size:28px;font-weight:700}
+  .fab.active .call-ico{display:none}
+  .fab.active .close-ico{display:block}
+
+  .fab-panel{
+    position:fixed;right:18px;bottom:158px;z-index:999;width:288px;
+    background:#fff;border-radius:14px;box-shadow:0 12px 40px rgba(0,0,0,.28);
+    padding:20px;opacity:0;visibility:hidden;transform:translateY(12px) scale(.97);
+    transition:opacity .2s,transform .2s,visibility .2s;
+  }
+  .fab-panel.open{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
+  .fab-panel h4{font-size:16px;margin-bottom:4px}
+  .fab-panel p{font-size:13px;color:var(--muted);margin-bottom:14px}
+  .fab-panel a.call-now{
+    display:flex;align-items:center;justify-content:center;gap:9px;
+    background:var(--orange);color:var(--navy);font-weight:800;font-size:17px;
+    padding:13px;border-radius:9px;
+  }
+  .fab-panel a.call-now:hover{background:var(--orange-dark)}
+  .fab-panel .hours{
+    display:block;text-align:center;font-size:12px;color:var(--muted);margin-top:11px;
+  }
+
+  /* ---------- Mobile sticky bar ---------- */
+  .mobile-bar{
+    display:none;position:fixed;left:0;right:0;bottom:0;z-index:1001;
+    background:var(--orange);color:var(--navy);font-weight:800;
+    text-align:center;padding:15px 12px;font-size:17px;
+    box-shadow:0 -3px 14px rgba(0,0,0,.25);
+  }
+
+  @media(max-width:860px){
+    .header-search{display:none}
+    .header-call span.lbl{display:none}
+    .header-call{padding:9px 13px;font-size:16px}
+    .mobile-bar{display:block}
+    .fab{bottom:82px}
+    .fab-panel{bottom:150px}
+    body{padding-bottom:60px}
+  }
+  @media(max-width:420px){
+    .brand-name{font-size:16px}
+    .fab-panel{width:calc(100vw - 36px)}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== Disclaimer ===== -->
+<div class="disclaimer">
+  Independent support service. We are <strong>not affiliated with, endorsed by, or an official agent of Amazon</strong> or its affiliates.
+</div>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="#" class="brand" aria-label="Support home">
+      <span class="brand-mark">S</span>
+      <span class="brand-name">Support<span>Hub</span></span>
+    </a>
+
+    <form class="header-search" onsubmit="return false">
+      <input type="text" placeholder="Search help topics…" aria-label="Search help topics">
+      <button type="submit" aria-label="Search">🔍</button>
+    </form>
+
+    <!-- CLICK-TO-CALL (header) -->
+    <a href="tel:+61420164996" class="header-call">
+      📞 <span class="lbl">Call</span> +61 420 164 996
+    </a>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="wrap">
+    <h1>How can we help you today?</h1>
+    <p>Speak to a real support agent in Australia. No hold music, no ticket queues — one tap and your phone dials.</p>
+
+    <!-- CLICK-TO-CALL (hero) -->
+    <a href="tel:+61420164996" class="hero-call">
+      📞 1800&nbsp;000&nbsp;000 &nbsp;·&nbsp; +61 420 164 996
+    </a>
+    <p class="hero-note">Open 24 hours · 7 days a week · Australia-wide</p>
+  </div>
+</section>
+
+<!-- ===== HOW IT WORKS ===== -->
+<section>
+  <div class="wrap">
+    <h2 class="section-title">How it works</h2>
+    <p class="section-sub">Three steps — the call starts automatically on the first tap.</p>
+    <div class="steps">
+      <div class="step">
+        <h3>Tap any number</h3>
+        <p>Every phone number on this page is a direct dial link. One tap opens your phone app.</p>
+      </div>
+      <div class="step">
+        <h3>Confirm the call</h3>
+        <p>Your device will ask for confirmation the first time. After that, dialling is instant.</p>
+      </div>
+      <div class="step">
+        <h3>Talk to an agent</h3>
+        <p>You're connected to an Australian support agent — usually within 60 seconds.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HELP TOPICS ===== -->
+<section style="background:#fff;border-top:1px solid #e3e6e6;border-bottom:1px solid #e3e6e6;">
+  <div class="wrap">
+    <h2 class="section-title">What we can help with</h2>
+    <p class="section-sub">Choose a topic and call — or simply tap the number below.</p>
+
+    <div class="grid">
+      <div class="card">
+        <div class="ico">📦</div>
+        <h3>Orders & Delivery</h3>
+        <p>Track a parcel, change a delivery address, or report a missing or late order.</p>
+        <a href="tel:+61420164996" class="call-link">📞 Call +61 420 164 996</a>
+      </div>
+
+      <div class="card">
+        <div class="ico">↩️</div>
+        <h3>Returns & Refunds</h3>
+        <p>Start a return, print a label, check refund status, or dispute a charge.</p>
+        <a href="tel:+61420164996" class="call-link">📞 Call +61 420 164 996</a>
+      </div>
+
+      <div class="card">
+        <div class="ico">🔐</div>
+        <h3>Account & Security</h3>
+        <p>Reset a password, unlock a locked account, or review suspicious sign-in activity.</p>
+        <a href="tel:+61420164996" class="call-link">📞 Call +61 420 164 996</a>
+      </div>
+
+      <div class="card">
+        <div class="ico">💳</div>
+        <h3>Payments & Billing</h3>
+        <p>Update a payment method, fix a declined card, or query an invoice.</p>
+        <a href="tel:+61420164996" class="call-link">📞 Call +61 420 164 996</a>
+      </div>
+
+      <div class="card">
+        <div class="ico">🛠️</div>
+        <h3>Product & Technical</h3>
+        <p>Setup help, warranty questions, and troubleshooting for devices you've bought.</p>
+        <a href="tel:+61420164996" class="call-link">📞 Call +61 420 164 996</a>
+      </div>
+
+      <div class="card">
+        <div class="ico">💬</div>
+        <h3>Anything Else</h3>
+        <p>Not sure which team you need? Call and we'll route you to the right agent.</p>
+        <a href="tel:+61420164996" class="call-link">📞 Call +61 420 164 996</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CALL BAND ===== -->
+<section>
+  <div class="wrap">
+    <div class="call-band">
+      <h2>Prefer to talk to a person?</h2>
+      <p>Our Australian support line is open 24/7 — one tap connects you.</p>
+      <!-- CLICK-TO-CALL (band) -->
+      <a href="tel:+61420164996">📞 +61 420 164 996</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section style="background:#fff;border-top:1px solid #e3e6e6;">
+  <div class="wrap">
+    <h2 class="section-title">Frequently asked questions</h2>
+    <p class="section-sub">Still stuck? Call <a href="tel:+61420164996" style="color:var(--teal);font-weight:700">+61 420 164 996</a>.</p>
+
+    <details open>
+      <summary>Is the phone call free?</summary>
+      <p>Calls to our support line are charged at your standard national rate. Calling from a mobile plan with unlimited national calls is usually free.</p>
+    </details>
+
+    <details>
+      <summary>How quickly will I get through?</summary>
+      <p>Average wait time is under 60 seconds. Peak hours are 9am–11am and 5pm–7pm AEST.</p>
+    </details>
+
+    <details>
+      <summary>Do I need my order number?</summary>
+      <p>It helps us move faster, but it isn't required. The agent can look you up by email or phone number.</p>
+    </details>
+
+    <details>
+      <summary>Are you available on weekends and public holidays?</summary>
+      <p>Yes — the line operates 24 hours a day, 7 days a week, including all Australian public holidays.</p>
+    </details>
+
+    <details>
+      <summary>Is this an official Amazon support page?</summary>
+      <p>No. This is an independent third-party support service. We are not affiliated with, endorsed by, or acting as an agent of Amazon. For official Amazon Australia support, visit amazon.com.au.</p>
+    </details>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="footer-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">Back to top</div>
+
+  <div class="footer-main">
+    <div>
+      <h4>Get to know us</h4>
+      <ul>
+        <li><a href="#">About our service</a></li>
+        <li><a href="#">How we work</a></li>
+        <li><a href="#">Careers</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4>Support</h4>
+      <ul>
+        <li><a href="#">Help centre</a></li>
+        <li><a href="#">Returns policy</a></li>
+        <li><a href="#">Shipping info</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#">Terms of use</a></li>
+        <li><a href="#">Privacy policy</a></li>
+        <li><a href="#">Cookie preferences</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4>Call us</h4>
+      <p style="font-size:13.5px;color:#bbb;margin-bottom:12px;">
+        24/7 Australian support line
+      </p>
+      <!-- CLICK-TO-CALL (footer) -->
+      <a href="tel:+61420164996" class="footer-call">📞 +61 420 164 996</a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    © <span id="yr"></span> SupportHub Australia. All rights reserved.
+    <p class="disc">
+      SupportHub is an independent third-party assistance service. We are not affiliated with,
+      endorsed by, or an official representative of Amazon.com, Inc. or Amazon Australia.
+      All trademarks belong to their respective owners.
+    </p>
+  </div>
+</footer>
+
+<!-- ===== FLOATING TOGGLE ===== -->
+<button class="fab" id="fab" aria-label="Open call options" aria-expanded="false" aria-controls="fabPanel">
+  <span class="call-ico">📞</span>
+  <span class="close-ico">×</span>
+</button>
+
+<div class="fab-panel" id="fabPanel" role="dialog" aria-label="Call support">
+  <h4>Talk to support now</h4>
+  <p>Australian agents available 24/7.</p>
+  <!-- CLICK-TO-CALL (toggle panel) -->
+  <a href="tel:+61420164996" class="call-now">📞 +61 420 164 996</a>
+  <span class="hours">Tap to dial instantly</span>
+</div>
+
+<!-- ===== MOBILE STICKY BAR ===== -->
+<a href="tel:+61420164996" class="mobile-bar">📞 Call Now: +61 420 164 996</a>
+
+<script>
+  // Year
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Floating toggle
+  var fab = document.getElementById('fab');
+  var panel = document.getElementById('fabPanel');
+
+  fab.addEventListener('click', function (e) {
+    e.stopPropagation();
+    var open = panel.classList.toggle('open');
+    fab.classList.toggle('active', open);
+    fab.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+
+  // Close on outside click
+  document.addEventListener('click', function (e) {
+    if (!panel.contains(e.target) && !fab.contains(e.target)) {
+      panel.classList.remove('open');
+      fab.classList.remove('active');
+      fab.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      panel.classList.remove('open');
+      fab.classList.remove('active');
+      fab.setAttribute('aria-expanded', 'false');
+    }
+  });
+</script>
+
+</body>
+</html>
